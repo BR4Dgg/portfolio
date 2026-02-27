@@ -95,11 +95,4 @@ Security research reports are available in the `/reports` directory. Current rep
 
 - **Email:** sean@magee.pro
 - **LinkedIn:** [linkedin.com/in/sean--magee](https://www.linkedin.com/in/sean--magee/)
-- **GitHub:** [@BR4Dgg](https://github.com/BR4Dgg)
-
-
-
-
----
-
-**Built with** ☕ **and** 🔐 **by Sean Magee**
+- **GitHub:** [@BR4Dgg](https://github.com/BR4Dgg} **You are literally already here...**
