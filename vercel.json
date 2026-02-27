@@ -1,5 +1,4 @@
 {
-  "_comment": "Security headers configuration",
   "headers": [
     {
       "source": "/(.*)",
