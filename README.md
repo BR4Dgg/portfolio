@@ -1,19 +1,20 @@
 # Cybersecurity Portfolio
 
-Rudimentary and beginner portfolio showcasing cybersecurity projects, homelab infrastructure, and security research.
+Professional portfolio showcasing cybersecurity projects, homelab infrastructure, and security research.
 
-##  Live Site
+## Live Site
 
-[View Portfolio](https://your-username.vercel.app) *(will be updated after deployment)*
+- **Primary:** [magee.pro](https://magee.pro)
+- **Vercel:** [portfolio.vercel.app](https://portfolio-br4dgg.vercel.app) *(update with your actual Vercel URL)*
 
-##  Tech Stack
+## Tech Stack
 
 - **Frontend:** HTML5, CSS3, Vanilla JavaScript
 - **Build Tool:** Vite
 - **Deployment:** Vercel
 - **Fonts:** JetBrains Mono, Work Sans
 
-##  Features
+## Features
 
 - Responsive design optimized for all devices
 - Animated terminal style logo with rotating commands
@@ -22,7 +23,7 @@ Rudimentary and beginner portfolio showcasing cybersecurity projects, homelab in
 - Homelab documentation
 - Professional experience showcase
 
-##  Project Structure
+## Project Structure
 
 ```
 portfolio/
@@ -35,7 +36,7 @@ portfolio/
 └── README.md          # This file
 ```
 
-##  Local Development
+## Local Development
 
 ### Prerequisites
 - Node.js (v18 or higher)
@@ -69,21 +70,21 @@ npm run build
 
 The optimized site will be in the `dist/` folder.
 
-##  Security Research
+## Security Research
 
 Security research reports are available in the `/reports` directory. Current reports:
 
 - [SEO Poisoning & Domain Hijacking via Compromised .EDU Infrastructure](./reports/seo-poisoning-edu-compromise.md)
 
-##  Technologies & Skills Showcased
+## Technologies and Skills Showcased
 
 **Cybersecurity:**
-- Security Operations & Analysis
+- Security Operations and Analysis
 - Penetration Testing (Kali Linux, Metasploit, Burp Suite, Nmap)
-- SIEM & Monitoring (Wazuh, Splunk)
+- SIEM and Monitoring (Wazuh, Splunk)
 - Threat Intelligence (MITRE ATT&CK)
 - Active Directory Security
-- Network Architecture & Segmentation
+- Network Architecture and Segmentation
 
 **Development:**
 - Virtualization (Proxmox, VMware, KVM/QEMU)
@@ -91,8 +92,16 @@ Security research reports are available in the `/reports` directory. Current rep
 - Scripting (Python, Bash)
 - Security Automation
 
-##  Contact
+## Contact
 
 - **Email:** sean@magee.pro
 - **LinkedIn:** [linkedin.com/in/sean--magee](https://www.linkedin.com/in/sean--magee/)
-- **GitHub:** [@BR4Dgg](https://github.com/BR4Dgg} **You are literally already here...**
+- **GitHub:** [@BR4Dgg](https://github.com/BR4Dgg)
+
+## License
+
+MIT License - feel free to use this as a template for your own portfolio!
+
+---
+
+**Built by Sean Magee**
