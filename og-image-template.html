@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Preview - magee.pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1200px;
+            height: 630px;
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, #0a0e17 0%, #151b2b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Grid background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(42, 52, 71, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(42, 52, 71, 0.3) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.4;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: left;
+            padding: 0 80px;
+            max-width: 1000px;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00c5e0;
+            margin-bottom: 3rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #e4e8f0 0%, #00c5e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #9ba5b8;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(0, 197, 224, 0.1);
+            border: 1px solid #00c5e0;
+            color: #00c5e0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .accent-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #00c5e0, #ff6b6b);
+        }
+
+        .corner-accent {
+            position: absolute;
+            bottom: 40px;
+            right: 80px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="accent-line"></div>
+    
+    <div class="container">
+        <div class="logo">magee.pro/</div>
+        
+        <h1>Sean Magee</h1>
+        
+        <div class="subtitle">Cybersecurity Portfolio</div>
+        
+        <div class="tags">
+            <span class="tag">Security Operations</span>
+            <span class="tag">Penetration Testing</span>
+            <span class="tag">Homelab</span>
+            <span class="tag">SIEM</span>
+        </div>
+    </div>
+    
+    <div class="corner-accent">magee.pro</div>
+</body>
+</html>
