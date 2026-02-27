@@ -5,7 +5,6 @@ Professional portfolio showcasing cybersecurity projects, homelab infrastructure
 ## Live Site
 
 - **Primary:** [magee.pro](https://magee.pro)
-- **Vercel:** [portfolio.vercel.app](https://portfolio-br4dgg.vercel.app) *(update with your actual Vercel URL)*
 
 ## Tech Stack
 
@@ -99,8 +98,6 @@ Security research reports are available in the `/reports` directory. Current rep
 - **GitHub:** [@BR4Dgg](https://github.com/BR4Dgg)
 
 ## License
-
-MIT License - feel free to use this as a template for your own portfolio!
 
 ---
 
