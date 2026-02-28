@@ -659,13 +659,13 @@
             </div>
             <div class="contact-container">
                 <div class="contact-links">
-                    <a href="/cdn-cgi/l/email-protection#710214101f311c101614145f01031e" class="contact-link">
-                        <div class="contact-icon">@</div>
-                        <div class="contact-info">
-                            <div class="contact-label">Email</div>
-                            <div class="contact-value"><span class="__cf_email__" data-cfemail="4e3d2b2f200e232f292b2b603e3c21">[email&#160;protected]</span></div>
-                        </div>
-                    </a>
+                    <div class="contact-link" style="cursor: default;">
+    <div class="contact-icon">@</div>
+    <div class="contact-info">
+        <div class="contact-label">Email</div>
+        <div class="contact-value" id="email-display"></div>
+    </div>
+</div>
 
                     <a href="https://www.linkedin.com/in/sean--magee/" class="contact-link" target="_blank">
                         <div class="contact-icon">in</div>
@@ -778,6 +778,12 @@ function typeCommand() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+// Obfuscated email using ASCII character codes
+    const codes = [115,101,97,110,64,109,97,103,101,101,46,112,114,111];
+    const emailDisplay = document.getElementById('email-display');
+    if (emailDisplay) {
+        emailDisplay.textContent = String.fromCharCode(...codes);
+    }
     typeCommand();
     
     const reportLink = document.getElementById('latest-report-link');
