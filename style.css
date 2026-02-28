@@ -25,34 +25,35 @@
             overflow-x: hidden;
         }
 
-        /* Animated background grid */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
-            z-index: -1;
-            animation: gridMove 20s linear infinite;
-        }
+/* Animated background grid */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.3;
+    z-index: -1;
+    animation: gridMove 20s linear infinite;
+}
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
 
         /* Header */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 14, 23, 0.95);
+            background: rgba(30, 40, 55, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
@@ -105,20 +106,7 @@
             25%, 75% { opacity: 0.3; }
         }
 
-        @keyframes pulse {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0, 197, 224, 0.7);
-            }
-            50% { 
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(0, 197, 224, 0);
-            }
-        }
-
         #latest-report-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(0, 197, 224, 0.3);
             border-color: var(--accent-secondary);
         }
 
@@ -299,12 +287,11 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: border-color 0.3s;
         }
 
         .stat-item:hover {
-            transform: translateX(5px);
-            box-shadow: -5px 0 0 var(--accent-primary);
+            border-color: var(--accent-primary);
         }
 
         .stat-label {
@@ -331,33 +318,15 @@
 
         .homelab-card {
             background: var(--bg-card);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: 12px;
             padding: 2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: border-color 0.3s;
             position: relative;
             overflow: hidden;
         }
 
-        .homelab-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-
-        .homelab-card:hover::before {
-            transform: translateX(100%);
-        }
-
         .homelab-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px var(--shadow);
             border-color: var(--accent-primary);
         }
 
@@ -408,7 +377,7 @@
         /* Contact Section */
         .contact-container {
             background: var(--bg-card);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: 12px;
             padding: 3rem;
             max-width: 700px;
@@ -440,18 +409,15 @@
             gap: 1rem;
             padding: 1.5rem;
             background: var(--bg-secondary);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: 8px;
             text-decoration: none;
             color: var(--text-primary);
-            transition: all 0.3s;
+            transition: border-color 0.3s;
         }
 
         .contact-link:hover {
-            background: var(--bg-primary);
             border-color: var(--accent-primary);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px var(--shadow);
         }
 
         .contact-icon {
