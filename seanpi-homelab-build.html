@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Building My First Security Homelab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #151b2b;
+            --bg-card: #1a2332;
+            --accent-primary: #00c5e0;
+            --accent-secondary: #ff6b6b;
+            --text-primary: #e4e8f0;
+            --text-secondary: #9ba5b8;
+            --text-muted: #6b7280;
+            --border: #2a3447;
+            --shadow: rgba(0, 197, 224, 0.15);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .logo::before {
+            content: '>';
+            color: var(--accent-secondary);
+            animation: blink 1.5s infinite;
+            margin-right: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        main {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover { color: var(--accent-primary); }
+        .back-link::before { content: '←'; }
+
+        /* Post header */
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .post-date::before {
+            content: '$ ';
+            color: var(--accent-primary);
+        }
+
+        .post-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            background: var(--bg-secondary);
+            color: var(--accent-secondary);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .post-intro {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        /* Body text */
+        .post-body p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            margin-bottom: 1.4rem;
+        }
+
+        .post-body h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 2.75rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .post-body h2::before { content: '//'; color: var(--accent-primary); font-weight: 400; }
+
+        .post-body h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Callout */
+        .callout {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 0 8px 8px 0;
+            padding: 1.1rem 1.4rem;
+            margin: 1.75rem 0;
+            color: var(--text-secondary);
+            font-size: 0.97rem;
+            line-height: 1.75;
+        }
+
+        .callout::before {
+            content: '> note';
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        /* Inline code */
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.87em;
+            background: var(--bg-secondary);
+            color: var(--accent-primary);
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            border: 1px solid var(--border);
+        }
+
+        /* Stack summary cards */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1rem;
+            margin: 1.75rem 0;
+        }
+
+        .stack-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.1rem 1.25rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .stack-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .stack-card-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .stack-card-desc {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Threat table */
+        .threat-table {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1.75rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .threat-table-header {
+            background: var(--bg-secondary);
+            padding: 0.6rem 1.2rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+        }
+
+        .threat-row {
+            padding: 0.6rem 1.2rem;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            transition: background 0.2s;
+        }
+
+        .threat-row:hover { background: var(--bg-secondary); }
+        .threat-label { color: var(--text-secondary); }
+        .threat-count { color: var(--accent-secondary); font-weight: 600; }
+
+        .threat-total {
+            padding: 0.65rem 1.2rem;
+            border-top: 1px solid var(--accent-primary);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .threat-total .threat-count { color: var(--accent-primary); }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        footer::before { content: '// '; color: var(--accent-secondary); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.75rem; }
+            .stack-grid { grid-template-columns: 1fr; }
+            nav { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 1rem; }
+        }
+
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="portfolio.html" class="logo">magee.pro/</a>
+        <ul class="nav-links">
+            <li><a href="portfolio.html#about">About</a></li>
+            <li><a href="portfolio.html#education">Education</a></li>
+            <li><a href="portfolio.html#homelab">Homelab</a></li>
+            <li><a href="portfolio.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <a href="portfolio.html#homelab" class="back-link">Back to Homelab</a>
+
+    <div class="post-meta">
+        <span class="post-date">March 12, 2026</span>
+        <span class="post-tag">homelab</span>
+        <span class="post-tag">raspberry pi</span>
+        <span class="post-tag">beginner</span>
+    </div>
+
+    <h1>I Built a Real Security Lab on a $100 Raspberry Pi</h1>
+
+    <p class="post-intro">
+        I'm studying for my ISC2 CC and Security+ certifications, and somewhere along the way I got tired of just reading about tools and decided to actually run them. This is a writeup of everything I set up on a Raspberry Pi 5 sitting on my desk — from scratch, in one session.
+    </p>
+
+    <hr class="divider">
+
+    <div class="post-body">
+
+        <h2>The Hardware</h2>
+        <p>
+            The whole thing runs on a Raspberry Pi 5 (4GB). It's a tiny computer about the size of a credit card that sips maybe 5 watts of power, which means I can leave it on 24/7 without thinking about it. I gave it a static IP at <code>192.168.0.2</code> so nothing ever moves around on me, and I access it over SSH from my Windows machine. No monitor needed.
+        </p>
+
+        <h2>Pi-hole + Unbound</h2>
+        <p>
+            The first real service I set up was Pi-hole, which acts as a DNS server for my whole network. Every device at home now routes its DNS requests through the Pi first. Pi-hole checks each request against a blocklist and drops anything that matches — ads, trackers, malware domains. I'm sitting at just over <strong>1 million</strong> blocked domains across three lists (Hagezi Pro, OISD Big, Hagezi TIF).
+        </p>
+        <p>
+            Pi-hole alone still sends your DNS queries out to Google or Cloudflare. Unbound fixes that by resolving domains directly with the authoritative root servers — no middleman. Set it to run on <code>127.0.0.1:5335</code> and pointed Pi-hole at it. Now nobody upstream sees what I'm looking up.
+        </p>
+        <div class="callout">
+            Pi-hole is the bouncer. Unbound means you don't have to whisper your guest list to Google first.
+        </div>
+
+        <h2>Tailscale VPN</h2>
+        <p>
+            Tailscale creates an encrypted mesh network between all my devices using WireGuard under the hood. My Pi, my Windows desktop, and my iPhone are all connected with fixed Tailscale IPs regardless of where I am. I also set the Pi as an exit node so I can route my traffic through home when I'm on public WiFi. Key expiry disabled so it doesn't randomly stop working.
+        </p>
+
+        <h2>Security Hardening</h2>
+        <p>
+            Before exposing anything, I locked down the Pi the same way you'd harden a production Linux box. Fail2ban watches for failed SSH logins and bans the IP after too many attempts. UFW (firewall) only allows traffic on ports I actually use. SSH is configured to block root login, limit auth attempts, and timeout idle sessions. Unattended upgrades handle security patches automatically overnight.
+        </p>
+
+        <h2>CrowdSec</h2>
+        <p>
+            CrowdSec is an intrusion detection system with a community layer on top. It watches your logs for attack patterns — brute force, port scans, web crawlers, exploit attempts — and bans the offending IPs at the firewall level via a bouncer that hooks directly into nftables. What makes it different is the community blocklist: millions of CrowdSec users anonymously share attack data, so the moment an IP attacks someone else in the community, it gets blocked for everyone.
+        </p>
+        <p>
+            Here's what it blocked within the first few hours of being live:
+        </p>
+
+        <div class="threat-table">
+            <div class="threat-table-header">
+                <span>Threat Type</span>
+                <span>Blocked</span>
+            </div>
+            <div class="threat-row">
+                <span class="threat-label">HTTP crawlers</span>
+                <span class="threat-count">6,579</span>
+            </div>
+            <div class="threat-row">
+                <span class="threat-label">HTTP scanners</span>
+                <span class="threat-count">5,362</span>
+            </div>
+            <div class="threat-row">
+                <span class="threat-label">SSH brute force</span>
+                <span class="threat-count">2,425</span>
+            </div>
+            <div class="threat-row">
+                <span class="threat-label">HTTP brute force</span>
+                <span class="threat-count">496</span>
+            </div>
+            <div class="threat-row">
+                <span class="threat-label">HTTP exploits</span>
+                <span class="threat-count">126</span>
+            </div>
+            <div class="threat-row">
+                <span class="threat-label">HTTP DoS</span>
+                <span class="threat-count">12</span>
+            </div>
+            <div class="threat-total">
+                <span>Total blocked</span>
+                <span class="threat-count">15,000+</span>
+            </div>
+        </div>
+
+        <p>
+            These aren't hypothetical. The moment anything is exposed to the internet, the scanners find it within minutes. Watching this in real time made the threat model stuff from my coursework actually click.
+        </p>
+
+        <h2>Docker + Monitoring Stack</h2>
+        <p>
+            Everything beyond the base OS runs in Docker containers — isolated, easy to manage, easy to update. Portainer gives me a web UI so I'm not SSH-ing in every time I want to restart something. Watchtower runs as a cron job at 3am and pulls updated images automatically. Nginx Proxy Manager sits on port 80 and routes traffic to friendly local domains like <code>grafana.lan</code> instead of raw IP and port combos.
+        </p>
+        <p>
+            For monitoring I'm running Netdata (real time, 266 metrics, updates every second), Prometheus (scrapes Netdata every 15 seconds so I have historical data), and Grafana (connects to Prometheus and visualizes everything). Uptime Kuma pings all my services every 60 seconds and fires a push notification to my phone the moment anything goes down.
+        </p>
+
+        <h2>Full Stack</h2>
+
+        <div class="stack-grid">
+            <div class="stack-card">
+                <div class="stack-card-name">Pi-hole + Unbound</div>
+                <div class="stack-card-desc">DNS ad blocking with private recursive resolution</div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Tailscale</div>
+                <div class="stack-card-desc">Encrypted mesh VPN across all devices</div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Fail2ban + UFW</div>
+                <div class="stack-card-desc">Brute force protection and firewall</div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">CrowdSec</div>
+                <div class="stack-card-desc">IDS with community threat intelligence</div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Docker + Portainer</div>
+                <div class="stack-card-desc">Containerized services with web management</div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Nginx Proxy Manager</div>
+                <div class="stack-card-desc">Reverse proxy with local domain routing</div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Netdata</div>
+                <div class="stack-card-desc">Real time system monitoring, 266 metrics</div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Prometheus + Grafana</div>
+                <div class="stack-card-desc">Historical metrics and custom dashboards</div>
+            </div>
+            <div class="stack-card">
+                <div class="stack-card-name">Uptime Kuma</div>
+                <div class="stack-card-desc">Service health monitoring with push alerts</div>
+            </div>
+        </div>
+
+        <h2>What I Actually Took Away From This</h2>
+        <p>
+            DNS is way more important than it sounds in textbooks. When you control DNS for your whole network you can actually see everything happening on it — malware, ad trackers, sketchy domains, all of it announces itself through DNS before it can do anything. Pi-hole made that visible.
+        </p>
+        <p>
+            The CrowdSec numbers above are what stuck with me most. I didn't have to do anything to accumulate 15,000 blocked IPs. They were already in the community database from attacks on other people. Defense in depth isn't just a framework concept — I can see each layer doing something different in the logs right now.
+        </p>
+        <p>
+            The Pi cost under $100. The stack it runs is the same category of tooling that security teams use to protect real infrastructure. That gap between "reading about it" and "running it" is where stuff actually starts to make sense.
+        </p>
+
+        <div class="callout">
+            Full documentation and configuration files are available in my GitHub repo linked below. Next up: Active Directory lab on Proxmox, Wazuh SIEM, and Kali Linux for offensive practice.
+        </div>
+
+        <p style="margin-top: 2rem;">
+            <a href="https://github.com/BR4Dgg/portfolio" target="_blank" style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--accent-primary); text-decoration: none; border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px;">
+                github.com/BR4Dgg/portfolio →
+            </a>
+        </p>
+
+    </div>
+</main>
+
+<footer>
+    Built with care. Hosted on homelab infrastructure.
+</footer>
+
+</body>
+</html>
