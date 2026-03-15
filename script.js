@@ -86,6 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update latest report link
     const reportLink = document.getElementById('latest-report-link');
     if (reportLink) {
-        reportLink.href = 'https://github.com/BR4Dgg/portfolio/blob/main/reports/seo-poisoning-edu-compromise.md';
+        reportLink.href = ''https://github.com/BR4Dgg/portfolio/blob/main/reports/seanpi-hardening-march14-2026.md';
     }
 });
