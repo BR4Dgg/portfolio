@@ -1,4 +1,4 @@
-# SeanPi Homelab — Service Dashboard & Security Cleanup
+# SeanPi Homelab Service Dashboard & Security Cleanup
 ## Docker Socket Hardening, Homepage Dashboard, Custom Dashboard, Email Configuration
 
 **Date:** March 15, 2026
