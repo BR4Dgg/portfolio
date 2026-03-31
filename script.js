@@ -126,7 +126,7 @@ async function updateReportBanner() {
     const REPO = 'BR4Dgg/portfolio';
     const BRANCH = 'main';
     const FOLDER = 'reports';
-    const API_URL = `https://api.github.com/repos/${REPO}/contents/${FOLDER}`;
+    const API_URL = `https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`;
 
     const link = document.getElementById('latest-report-link');
     const titleEl = document.getElementById('latest-report-title');
@@ -164,8 +164,11 @@ async function updateReportBanner() {
         link.href = `https://github.com/${REPO}/blob/${BRANCH}/${FOLDER}/${latest.name}`;
 
     } catch (err) {
-        // API failed — leave the banner as its static fallback, don't break the page
         console.warn('Could not fetch latest report:', err);
+        // Fall back to hardcoded latest rather than leaving "Loading..."
+        titleEl.textContent = 'Agentic Memory Poisoning — RAG Pipeline Attack & Mechanistic Interpretability';
+        dateEl.textContent = 'Latest Security Research \u2022 Mar 31, 2026';
+        link.href = 'https://github.com/BR4Dgg/portfolio/blob/main/reports/agentic-memory-poisoning-march31-2026.md';
     }
 }
 
