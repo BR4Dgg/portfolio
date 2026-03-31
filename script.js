@@ -1,3 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sean Magee | Cybersecurity Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sean Magee - Cybersecurity professional specializing in security operations, penetration testing, and homelab infrastructure. Explore my projects, research, and technical documentation.">
+    <meta name="keywords" content="cybersecurity, security operations, penetration testing, homelab, security research, SIEM, threat intelligence, network security, Sean Magee">
+    <meta name="author" content="Sean Magee">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://magee.pro">
+    
+    <!-- Open Graph Meta Tags (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://magee.pro">
+    <meta property="og:title" content="Sean Magee | Cybersecurity Portfolio">
+    <meta property="og:description" content="Cybersecurity professional specializing in security operations, penetration testing, and homelab infrastructure. Explore my projects and security research.">
+    <meta property="og:site_name" content="Sean Magee Portfolio">
+    <meta property="og:image" content="https://magee.pro/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://magee.pro">
+    <meta name="twitter:title" content="Sean Magee | Cybersecurity Portfolio">
+    <meta name="twitter:description" content="Cybersecurity professional specializing in security operations, penetration testing, and homelab infrastructure.">
+    <meta name="twitter:image" content="https://magee.pro/og-image.png">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#0f172a">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--  https://github.com/BR3Dgg/WhatCouldThisBe/tree/main -->
+
+    <!-- CTF GATE OVERLAY -->
+    <div id="ctf-gate" style="
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #0a0e17;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'JetBrains Mono', monospace;
+        overflow: hidden;
+    ">
+        <!-- Animated grid background -->
+        <div style="
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(#2a3447 1px, transparent 1px),
+                linear-gradient(90deg, #2a3447 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+        "></div>
+
+        <!-- Glowing orb top-left -->
+        <div style="
+            position: absolute;
+            top: -120px;
+            left: -120px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,197,224,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        "></div>
+
+        <!-- Glowing orb bottom-right -->
+        <div style="
+            position: absolute;
+            bottom: -120px;
+            right: -120px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,107,107,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        "></div>
+
+        <!-- Gate card -->
+        <div style="
+            position: relative;
+            background: #151b2b;
+            border: 1px solid #2a3447;
+            border-radius: 16px;
+            padding: 3rem 3.5rem;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(0,197,224,0.08), 0 20px 60px rgba(0,0,0,0.6);
+        ">
+            <!-- Top accent bar -->
+            <div style="
+                position: absolute;
+                top: 0; left: 0; right: 0;
+                height: 3px;
+                border-radius: 16px 16px 0 0;
+                background: linear-gradient(90deg, #00c5e0, #ff6b6b);
+            "></div>
+
+            <!-- Lock icon -->
+            <div style="
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                background: #1a2332;
+                border: 2px solid #2a3447;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 1.75rem;
+                font-size: 1rem;
+                font-family: 'JetBrains Mono', monospace;
+                font-weight: 700;
+                color: #00c5e0;
+                letter-spacing: 1px;
+            ">[LOCK]</div>
+
+            <!-- Label -->
+            <div style="
+                font-size: 0.75rem;
+                color: #00c5e0;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                margin-bottom: 0.75rem;
+            ">OSINT CHALLENGE</div>
+
+            <!-- Title -->
+            <h1 style="
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: #e4e8f0;
+                margin-bottom: 1rem;
+                line-height: 1.3;
+            ">Access Restricted</h1>
+
+            <!-- Hint -->
+            <p style="
+                color: #9ba5b8;
+                font-size: 0.85rem;
+                line-height: 1.7;
+                margin-bottom: 2rem;
+            ">Prove you belong here. Find the flag, then enter it below.<br>
+            <span style="color: #6b7280; font-size: 0.78rem; margin-top: 0.4rem; display: inline-block;">
+                Hint: Try Ctrl+U and git the hub
+            </span></p>
+
+            <!-- Input row -->
+            <div style="display: flex; gap: 0.6rem; margin-bottom: 1rem;">
+                <input
+                    id="ctf-input"
+                    type="text"
+                    placeholder="FLAG{...}"
+                    autocomplete="off"
+                    spellcheck="false"
+                    style="
+                        flex: 1;
+                        background: #0a0e17;
+                        border: 1px solid #2a3447;
+                        border-radius: 8px;
+                        padding: 0.8rem 1rem;
+                        color: #e4e8f0;
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 0.9rem;
+                        outline: none;
+                        transition: border-color 0.2s;
+                    "
+                    onfocus="this.style.borderColor='#00c5e0'"
+                    onblur="this.style.borderColor='#2a3447'"
+                    onkeydown="if(event.key==='Enter') ctfSubmit()"
+                />
+                <button
+                    onclick="ctfSubmit()"
+                    style="
+                        background: #00c5e0;
+                        color: #0a0e17;
+                        border: none;
+                        border-radius: 8px;
+                        padding: 0.8rem 1.4rem;
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 0.85rem;
+                        font-weight: 700;
+                        cursor: pointer;
+                        letter-spacing: 1px;
+                        transition: opacity 0.2s;
+                        white-space: nowrap;
+                    "
+                    onmouseover="this.style.opacity='0.85'"
+                    onmouseout="this.style.opacity='1'"
+                >SUBMIT</button>
+            </div>
+
+            <!-- Error message -->
+            <div id="ctf-error" style="
+                color: #ff6b6b;
+                font-size: 0.78rem;
+                min-height: 1.2em;
+                margin-bottom: 1.25rem;
+                letter-spacing: 0.5px;
+                transition: opacity 0.3s;
+                opacity: 0;
+            ">Incorrect flag. Keep looking.</div>
+
+            <!-- Divider -->
+            <div style="
+                border-top: 1px solid #2a3447;
+                margin-bottom: 1.25rem;
+            "></div>
+
+            <!-- Skip button -->
+            <button
+                onclick="ctfSkip()"
+                style="
+                    background: transparent;
+                    border: 1px solid #2a3447;
+                    border-radius: 8px;
+                    padding: 0.65rem 1.5rem;
+                    color: #6b7280;
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 0.78rem;
+                    cursor: pointer;
+                    letter-spacing: 0.5px;
+                    transition: all 0.2s;
+                    width: 100%;
+                "
+                onmouseover="this.style.borderColor='#9ba5b8'; this.style.color='#9ba5b8'"
+                onmouseout="this.style.borderColor='#2a3447'; this.style.color='#6b7280'"
+            >Skip Challenge → Enter as Guest</button>
+        </div>
+    </div>
+
+    <!-- SUCCESS OVERLAY (hidden, shown briefly on correct flag) -->
+    <div id="ctf-success" style="
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: #0a0e17;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-family: 'JetBrains Mono', monospace;
+        flex-direction: column;
+        gap: 1.5rem;
+    ">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; font-weight: 700; color: #00c5e0; animation: ctfBounce 0.6s ease; letter-spacing: 2px;">[FLAG]</div>
+        <div style="color: #00c5e0; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px;">FLAG CAPTURED</div>
+        <div style="color: #9ba5b8; font-size: 0.85rem;">Access granted. Welcome.</div>
+    </div>
+
+    <style>
+        @keyframes ctfBounce {
+            0%   { transform: scale(0.3); opacity: 0; }
+            60%  { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        @keyframes ctfFadeOut {
+            0%   { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+
+    <script>
+        (function() {
+            const FLAG = 'FLAG{magee_pro}';
+            const gate = document.getElementById('ctf-gate');
+            const success = document.getElementById('ctf-success');
+            const error = document.getElementById('ctf-error');
+
+            function ctfReveal() {
+                gate.style.transition = 'opacity 0.5s ease';
+                gate.style.opacity = '0';
+                setTimeout(function() { gate.style.display = 'none'; }, 500);
+            }
+
+            window.ctfSubmit = function() {
+                const val = document.getElementById('ctf-input').value.trim();
+                if (val === FLAG) {
+                    // Show success screen
+                    success.style.display = 'flex';
+                    setTimeout(function() {
+                        success.style.transition = 'opacity 0.8s ease';
+                        success.style.opacity = '0';
+                        ctfReveal();
+                        setTimeout(function() { success.style.display = 'none'; }, 800);
+                    }, 1800);
+                } else {
+                    error.style.opacity = '1';
+                    document.getElementById('ctf-input').style.borderColor = '#ff6b6b';
+                    setTimeout(function() {
+                        error.style.opacity = '0';
+                        document.getElementById('ctf-input').style.borderColor = '#2a3447';
+                    }, 2500);
+                }
+            };
+
+            window.ctfSkip = function() {
+                ctfReveal();
+            };
+        })();
+    </script>
+    <header>
+        <nav>
+            <a href="#" class="logo">magee.pro/<span id="logo-text"></span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#homelab">Homelab</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-label">whoami</span>
+                <h1>Learning, Building,<br>Deploying</h1>
+                <p class="hero-description">
+                    Systems engineering enthusiast and homelab practitioner passionate about infrastructure, automation, and practical technical projects. Welcome to my digital workshop.
+                </p>
+            </div>
+        </section>
+
+        <!-- Latest Report Banner -->
+        <section style="padding: 0 2rem; margin-bottom: 4rem; animation: fadeIn 0.8s ease-out 0.2s both;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <a href="#" id="latest-report-link" target="_blank" style="display: block; text-decoration: none; background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%); border: 2px solid var(--accent-primary); border-radius: 12px; padding: 2rem; position: relative; overflow: hidden; transition: all 0.3s;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));"></div>
+                    <div style="display: flex; align-items: center; gap: 1.5rem;">
+                        <div style="flex-shrink: 0; width: 60px; height: 60px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; animation: pulse 2s infinite;">
+                            🔍
+                        </div>
+                        <div style="flex: 1;">
+                            <div id="latest-report-date" style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">
+                                Latest Security Research
+                            </div>
+                            <h3 id="latest-report-title" style="color: var(--text-primary); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3;">
+                                Loading latest report...
+                            </h3>
+                            <p style="color: var(--text-secondary); margin: 0; line-height: 1.6;">
+                                Building out my homelab stack from scratch started with a fresh Pi OS Lite install and ended up with a full security monitoring setup.
+                            </p>
+                        </div>
+                        <div style="flex-shrink: 0; font-family: 'JetBrains Mono', monospace; color: var(--accent-primary); font-size: 1.5rem;">
+                            →
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-header">
+                <span class="section-label">// SECTION_01</span>
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>
+                            I'm an aspiring cybersecurity professional building practical experience through applied homelab projects and structured training. My lab environment serves as both a learning platform and testing ground where I develop realistic security skills.
+                        </p>
+                        <p>
+                            From penetration testing and SIEM deployment to Active Directory security and network monitoring, I'm working through the foundational skills needed for a career in cybersecurity. Each project pushes me to understand attack vectors, defensive techniques, and the tools security professionals use daily.
+                        </p>
+                        <p>
+                            Currently completing the RapidAscent cybersecurity program and pursuing industry certifications while documenting my learning journey and building a portfolio of practical security projects.
+                        </p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Focus Areas</div>
+                            <div class="stat-value">Security Operations & Analysis</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Experience Level</div>
+                            <div class="stat-value">Early Career</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Current Status</div>
+                            <div class="stat-value">Always Learning</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="section-header">
+                <span class="section-label">// SECTION_02</span>
+                <h2>Education & Certifications</h2>
+                <p class="section-description">
+                    Continuously expanding my cybersecurity knowledge through structured training programs and industry recognized certifications.
+                </p>
+            </div>
+            
+            <div class="about-content" style="margin-bottom: 2rem;">
+                <div style="padding: 0;">
+                    <!-- RapidAscent Section -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <button onclick="toggleSection('rapidascent')" style="width: 100%; background: var(--bg-secondary); border: 2px solid var(--border); border-radius: 8px; padding: 1.5rem; color: var(--text-primary); font-size: 1.5rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; font-family: 'Work Sans', sans-serif;">
+                            <span>RapidAscent Cybersecurity Program</span>
+                            <span id="rapidascent-arrow" style="color: var(--accent-primary); transition: transform 0.3s;">▼</span>
+                        </button>
+                        <div id="rapidascent-content" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;">
+                            <div style="border-left: 3px solid var(--accent-primary); padding-left: 2rem; margin-top: 1rem;">
+                                <p style="color: var(--accent-secondary); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; margin-bottom: 1.5rem;">In Progress</p>
+                                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                                    Completing comprehensive DoD approved cybersecurity training program with practical job simulations and realistic scenarios. Working through gamified labs that mirror actual Security Operations Center (SOC) environments.
+                                </p>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+                                    <span class="tech-tag">MITRE ATT&CK Framework</span>
+                                    <span class="tech-tag">OSINT Techniques</span>
+                                    <span class="tech-tag">Docker Containerization</span>
+                                    <span class="tech-tag">Phishing Analysis</span>
+                                    <span class="tech-tag">Risk Assessment</span>
+                                    <span class="tech-tag">Threat Intelligence</span>
+                                </div>
+                                <p style="color: var(--text-secondary); line-height: 1.8;">
+                                    Key focus areas include threat intelligence analysis, open-source intelligence gathering, container security, social engineering defense, and enterprise risk management.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications Section -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <button onclick="toggleSection('certifications')" style="width: 100%; background: var(--bg-secondary); border: 2px solid var(--border); border-radius: 8px; padding: 1.5rem; color: var(--text-primary); font-size: 1.5rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; font-family: 'Work Sans', sans-serif;">
+                            <span>Certifications In Progress</span>
+                            <span id="certifications-arrow" style="color: var(--accent-primary); transition: transform 0.3s;">▼</span>
+                        </button>
+                        <div id="certifications-content" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;">
+                            <div style="border-left: 3px solid var(--accent-secondary); padding-left: 2rem; margin-top: 1rem;">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                                    <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
+                                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem; text-transform: uppercase;">Pursuing</div>
+                                        <div style="font-size: 1.35rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 0.5rem;">ISC2 CC</div>
+                                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0; line-height: 1.6;">Certified in Cybersecurity, a foundation level security certification covering security principles, network security, and risk management.</p>
+                                    </div>
+                                    <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
+                                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem; text-transform: uppercase;">Pursuing</div>
+                                        <div style="font-size: 1.35rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 0.5rem;">CompTIA Security+</div>
+                                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0; line-height: 1.6;">Industry standard security certification validating baseline cybersecurity skills and knowledge across various domains.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TryHackMe Section -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <button onclick="toggleSection('tryhackme')" style="width: 100%; background: var(--bg-secondary); border: 2px solid var(--border); border-radius: 8px; padding: 1.5rem; color: var(--text-primary); font-size: 1.5rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; font-family: 'Work Sans', sans-serif;">
+                            <span>Applied Cybersecurity Lab Training</span>
+                            <span id="tryhackme-arrow" style="color: var(--accent-primary); transition: transform 0.3s;">▼</span>
+                        </button>
+                        <div id="tryhackme-content" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;">
+                            <div style="border-left: 3px solid var(--accent-secondary); padding-left: 2rem; margin-top: 1rem;">
+                                <p style="color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; margin-bottom: 1rem;">TryHackMe | Jun 2025 to Present</p>
+                                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                                    Completed 100+ hours of practical cybersecurity training through structured, applied labs covering penetration testing, incident response, SOC operations, and cloud security.
+                                </p>
+                                <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                                    <li>Network & Web Application Penetration Testing with 90% remediation success rate</li>
+                                    <li>Analyzed 25+ simulated attacks examining 5,000+ logs, SIEM alerts, and PCAPs</li>
+                                    <li>Built Splunk dashboards reducing false positives by 33% and boosting detection speed by 40%</li>
+                                    <li>Led 15+ red/blue team scenarios including privilege escalation and lateral movement</li>
+                                    <li>Hardened AWS environments with IAM policies and Zero Trust architecture</li>
+                                    <li>Developed Python and Bash automation scripts improving response time by 60%</li>
+                                    <li>Digital forensics and malware analysis using MITRE ATT&CK framework</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="section-header">
+                <span class="section-label">// WORK_HISTORY</span>
+                <h2>Professional Experience</h2>
+            </div>
+            <div class="about-content" style="margin-bottom: 3rem;">
+                <div style="padding: 2rem 0;">
+                    <div style="margin-bottom: 2.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                            <div>
+                                <h3 style="color: var(--text-primary); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Cybersecurity Analyst Apprenticeship</h3>
+                                <div style="color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;">RapidAscent</div>
+                            </div>
+                            <div style="color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-align: right;">
+                                Jan 2026 to Present<br>
+                                <span style="color: var(--accent-secondary);">Remote</span>
+                            </div>
+                        </div>
+                        <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                            <li><strong>800+ Hours of Intensive Training:</strong> Completed fulltime, immersive cybersecurity program covering SOC operations, threat intelligence, penetration testing, and cloud security across aerospace, finance, energy, and defense sectors</li>
+                            <li><strong>Governance, Risk & Compliance (GRC):</strong> Created and enforced security policies, risk assessments, and incident response protocols, ensuring alignment with NIST 800-53, HIPAA, PCI-DSS, FedRAMP, and FISMA standards</li>
+                            <li><strong>Network & Systems Security:</strong> Fortified Windows and Linux systems by securing Active Directory environments, firewalls, and Zero Trust frameworks, resulting in 40% reduction in attack surface during enterprise simulations</li>
+                            <li><strong>Threat Hunting & Incident Response:</strong> Led threat investigations using MITRE ATT&CK, PCAPs, and SIEM correlation, reducing Mean Time to Detect (MTTD) by 40% and improving initial response playbook execution</li>
+                            <li><strong>Penetration Testing & Vulnerability Management:</strong> Executed vulnerability scans with Nmap and Nessus across diverse environments, identifying critical CVEs and enabling 90% remediation success rate</li>
+                            <li><strong>Secure Coding & Automation:</strong> Developed 10+ custom Python and Bash scripts to streamline log analysis, automate incident workflows, and harden configurations, improving response time by 60%</li>
+                            <li><strong>SOC Engineering & Threat Response:</strong> Monitored, triaged, and responded to 5,000+ simulated threat events in live SOC cyber range, reducing threat dwell time to under 3 hours</li>
+                            <li><strong>Red & Blue Team Operations:</strong> Simulated realistic cyber attacks including ransomware, phishing, and privilege escalation, reducing average threat dwell time from 24+ hours to under 3 hours</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 2.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                            <div>
+                                <h3 style="color: var(--text-primary); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">CTR (Cryptologic Technician)</h3>
+                                <div style="color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;">U.S. Navy</div>
+                            </div>
+                            <div style="color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-align: right;">
+                                5 Deployments (7th Fleet)<br>
+                                <span style="color: var(--accent-secondary);">Sasebo, Japan; San Diego, CA; Pensacola, FL</span>
+                            </div>
+                        </div>
+                        <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                            <li>Performed acquisition, analysis, and reporting of advanced communications signals at the intermediate level</li>
+                            <li>Documented and processed classified materials, ensuring stringent compliance with security protocols and maintaining operational security</li>
+                            <li>Maintained 100% accountability for all assigned multimillion dollar equipment throughout multiple deployments</li>
+                            <li>Planned and briefed personnel on mission objectives, enhancing operational efficiency and team coordination</li>
+                            <li>Coordinated and led training programs in preparation for air operations, fostering team readiness and skill development</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                            <div>
+                                <h3 style="color: var(--text-primary); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">In Port Security Reaction Force Team Member</h3>
+                                <div style="color: var(--accent-primary); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;">U.S. Navy, USS AMERICA</div>
+                            </div>
+                            <div style="color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-align: right;">
+                                April 2023 to April 2024<br>
+                                <span style="color: var(--accent-secondary);">Security Operations</span>
+                            </div>
+                        </div>
+                        <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                            <li>Completed multiple certification drills to improve antiterrorism readiness shipwide</li>
+                            <li>Stood hundreds of hours of vigilant watch protecting vital national security assets and critical national infrastructure</li>
+                            <li>Maintained strict security protocols and access control procedures for sensitive military installations</li>
+                            <li>Conducted threat assessments and responded to security incidents with rapid decision making under pressure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="homelab">
+            <div class="section-header">
+                <span class="section-label">// SECTION_03</span>
+                <h2>Cybersecurity Homelab</h2>
+                <p class="section-description">
+                    Built an enterprise grade virtualized security lab for practical experience with offensive security, defensive monitoring, and network architecture. Running on an Acer Predator laptop with nested virtualization.
+                </p>
+            </div>
+            <div class="homelab-grid">
+                <div class="homelab-card">
+                    <div class="card-icon">🔍</div>
+                    <h3 class="card-title">Security Research & Analysis</h3>
+                    <p class="card-description">
+                        Discovered and documented a live SEO poisoning attack exploiting compromised .EDU infrastructure. Traced a multistage attack chain involving domain hijacking, cloaking techniques, and browser based social engineering. Published comprehensive field report detailing the attack methodology, technical analysis, and remediation recommendations.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Threat Analysis</span>
+                        <span class="tech-tag">SEO Poisoning</span>
+                        <span class="tech-tag">OSINT</span>
+                        <span class="tech-tag">Incident Documentation</span>
+                    </div>
+                </div>
+
+                <div class="homelab-card">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">Virtualization Platform</h3>
+                    <p class="card-description">
+                        Set up Proxmox VE as a nested hypervisor inside VMware Workstation. Configured static networking, enabled nested virtualization in BIOS, and optimized resource allocation across multiple security VMs. Managing everything through the web interface on a custom network.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Proxmox VE 8.x</span>
+                        <span class="tech-tag">VMware</span>
+                        <span class="tech-tag">KVM/QEMU</span>
+                    </div>
+                </div>
+
+                <div class="homelab-card">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Offensive Security Lab</h3>
+                    <p class="card-description">
+                        Deployed Kali Linux with 300+ pre-installed penetration testing tools. Practicing network scanning with Nmap, web app testing with Burp Suite, and exploitation with Metasploit. Working through VulnHub boxes and documenting findings in professional reports.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Kali Linux 2025.4</span>
+                        <span class="tech-tag">Metasploit</span>
+                        <span class="tech-tag">Burp Suite</span>
+                        <span class="tech-tag">Nmap</span>
+                    </div>
+                </div>
+
+                <div class="homelab-card">
+                    <div class="card-icon">🛡️</div>
+                    <h3 class="card-title">SIEM & Monitoring</h3>
+                    <p class="card-description">
+                        Built Ubuntu Server VM as the foundation for Wazuh SIEM deployment. Configured for log aggregation, security monitoring, and alert creation. Learning to detect attacks in real-time and practice incident response workflows.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Ubuntu Server 22.04</span>
+                        <span class="tech-tag">Wazuh SIEM</span>
+                        <span class="tech-tag">Log Analysis</span>
+                    </div>
+                </div>
+
+                <div class="homelab-card">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">Network Architecture</h3>
+                    <p class="card-description">
+                        Designed and implemented segmented virtual networks with NAT and bridge configurations. Set up proper routing and DNS resolution across the lab. Learning network security fundamentals and how traffic flows between isolated environments.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Virtual Networking</span>
+                        <span class="tech-tag">NAT/Bridging</span>
+                        <span class="tech-tag">Network Segmentation</span>
+                    </div>
+                </div>
+
+                <div class="homelab-card">
+                    <div class="card-icon">🏢</div>
+                    <h3 class="card-title">Active Directory Lab (In Progress)</h3>
+                    <p class="card-description">
+                        Currently deploying Windows Server 2022 as a Domain Controller with Windows 10 clients. Planning to practice Active Directory attacks like Kerberoasting and Bloodhound enumeration, while also implementing defensive techniques and monitoring everything through the SIEM.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Windows Server 2022</span>
+                        <span class="tech-tag">Active Directory</span>
+                        <span class="tech-tag">Bloodhound</span>
+                    </div>
+                </div>
+
+                <a href="seanpi-homelab-build.html" class="homelab-card" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="card-icon">🥧</div>
+                    <h3 class="card-title">SeanPi — Full Build Log</h3>
+                    <p class="card-description">
+                        A full writeup of building this security stack from scratch on a Raspberry Pi 5. Pi-hole, Unbound, Tailscale, CrowdSec, Docker, Grafana, and a custom desktop HUD — documented start to finish.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Raspberry Pi 5</span>
+                        <span class="tech-tag">Pi-hole</span>
+                        <span class="tech-tag">CrowdSec</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Read Post →</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-header">
+                <span class="section-label">// SECTION_04</span>
+                <h2>Get In Touch</h2>
+                <p class="section-description">
+                    Interested in connecting? Feel free to reach out through any of these channels.
+                </p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-links">
+                    <div class="contact-link" style="cursor: default;">
+    <div class="contact-icon">@</div>
+    <div class="contact-info">
+        <div class="contact-label">Email</div>
+        <div class="contact-value" id="email-display"></div>
+    </div>
+</div>
+
+                    <a href="https://www.linkedin.com/in/sean--magee/" class="contact-link" target="_blank">
+                        <div class="contact-icon">in</div>
+                        <div class="contact-info">
+                            <div class="contact-label">LinkedIn</div>
+                            <div class="contact-value">Connect</div>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/BR4Dgg" class="contact-link" target="_blank">
+                        <div class="contact-icon">gh</div>
+                        <div class="contact-info">
+                            <div class="contact-label">GitHub</div>
+                            <div class="contact-value">@BR4Dgg</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="contact-link">
+                        <div class="contact-icon">📝</div>
+                        <div class="contact-info">
+                            <div class="contact-label">Blog</div>
+                            <div class="contact-value">Read Posts</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Built with care. Learning lots.
+    </footer>
+
+
+    <script>
 // Education Section Dropdown Toggle
 function toggleSection(sectionId) {
     const content = document.getElementById(sectionId + '-content');
@@ -53,24 +772,19 @@ function typeCommand() {
     const currentCommand = commands[currentCommandIndex];
 
     if (isDeleting) {
-        // Delete characters
         logoText.textContent = currentCommand.substring(0, currentCharIndex - 1);
         currentCharIndex--;
         typingSpeed = 50;
     } else {
-        // Type characters
         logoText.textContent = currentCommand.substring(0, currentCharIndex + 1);
         currentCharIndex++;
         typingSpeed = 100;
     }
 
-    // Check if word is complete
     if (!isDeleting && currentCharIndex === currentCommand.length) {
-        // Pause at end of word
         typingSpeed = 2000;
         isDeleting = true;
     } else if (isDeleting && currentCharIndex === 0) {
-        // Move to next word
         isDeleting = false;
         currentCommandIndex = (currentCommandIndex + 1) % commands.length;
         typingSpeed = 500;
@@ -79,13 +793,20 @@ function typeCommand() {
     setTimeout(typeCommand, typingSpeed);
 }
 
-// Start typing animation when page loads
 document.addEventListener('DOMContentLoaded', function() {
+// Obfuscated email using ASCII character codes
+    const codes = [115,101,97,110,64,109,97,103,101,101,46,112,114,111];
+    const emailDisplay = document.getElementById('email-display');
+    if (emailDisplay) {
+        emailDisplay.textContent = String.fromCharCode(...codes);
+    }
     typeCommand();
     
-    // Update latest report link
     const reportLink = document.getElementById('latest-report-link');
     if (reportLink) {
-        reportLink.href = 'https://github.com/BR4Dgg/portfolio/blob/main/reports/seanpi-session2-march15-2026.md';
+        reportLink.href = 'https://github.com/BR4Dgg/portfolio/blob/main/reports/seanpi-homelab-build.md';
     }
 });
+    </script>
+</body>
+</html>
