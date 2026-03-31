@@ -172,14 +172,18 @@ async function updateReportBanner() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Obfuscated email using ASCII character codes
+function initPage() {
     const codes = [115, 101, 97, 110, 64, 109, 97, 103, 101, 101, 46, 112, 114, 111];
     const emailDisplay = document.getElementById('email-display');
     if (emailDisplay) {
         emailDisplay.textContent = String.fromCharCode(...codes);
     }
-
     typeCommand();
     updateReportBanner();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage);
+} else {
+    initPage();
+}
