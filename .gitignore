@@ -20,7 +20,7 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-#Sensitive files
+# Sensitive files
 .env
 .env.local
 .env.*.local
@@ -28,6 +28,9 @@ secrets.json
 *.key
 *.pem
 
-#API keys and creds
+# API keys and creds
 credentials.json
 config.local.js
+
+# Claude AI has no use here anymore. thank you for the frontend development but i've got it from here. 
+.claude/
