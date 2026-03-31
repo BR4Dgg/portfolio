@@ -563,7 +563,7 @@
                 <span class="section-label">// SECTION_03</span>
                 <h2>Cybersecurity Homelab</h2>
                 <p class="section-description">
-                    Built an enterprise grade virtualized security lab for practical experience with offensive security, defensive monitoring, and network architecture. Running on an Acer Predator laptop with nested virtualization.
+                    A Raspberry Pi 5 running a production security stack, plus ongoing research into AI security and mechanistic interpretability. This is what I've actually built and documented.
                 </p>
             </div>
             <div class="homelab-grid">
@@ -582,68 +582,90 @@
                 </div>
 
                 <div class="homelab-card">
-                    <div class="card-icon">⚡</div>
-                    <h3 class="card-title">Virtualization Platform</h3>
+                    <div class="card-icon">🔍</div>
+                    <h3 class="card-title">Security Research &amp; Analysis</h3>
                     <p class="card-description">
-                        Set up Proxmox VE as a nested hypervisor inside VMware Workstation. Configured static networking, enabled nested virtualization in BIOS, and optimized resource allocation across multiple security VMs. Managing everything through the web interface on a custom network.
+                        Discovered a live SEO poisoning attack on compromised .EDU infrastructure and traced the full chain: domain hijacking, HTTP referrer cloaking, and a browser privacy prompt turned into a social engineering lure. Documented it as a field report with MITRE ATT&amp;CK mapping and a full IOC list.
                     </p>
                     <div class="tech-tags">
-                        <span class="tech-tag">Proxmox VE 8.x</span>
-                        <span class="tech-tag">VMware</span>
-                        <span class="tech-tag">KVM/QEMU</span>
+                        <span class="tech-tag">Threat Analysis</span>
+                        <span class="tech-tag">SEO Poisoning</span>
+                        <span class="tech-tag">OSINT</span>
+                        <span class="tech-tag">Incident Documentation</span>
                     </div>
                 </div>
 
                 <div class="homelab-card">
-                    <div class="card-icon">🎯</div>
-                    <h3 class="card-title">Offensive Security Lab</h3>
+                    <div class="card-icon">🔒</div>
+                    <h3 class="card-title">Infrastructure Hardening</h3>
                     <p class="card-description">
-                        Deployed Kali Linux with 300+ pre-installed penetration testing tools. Practicing network scanning with Nmap, web app testing with Burp Suite, and exploitation with Metasploit. Working through VulnHub boxes and documenting findings in professional reports.
+                        Ran a full threat assessment on the SeanPi stack and worked through the top findings in one session. Added SSH two-factor auth with ED25519 key plus TOTP and no password fallback, locked all sensitive ports to the Tailscale interface at the UFW level, and put the Docker socket behind a filtering proxy. The docker0 bridge issue killed all Uptime Kuma monitors mid-session until I figured out what was actually happening.
                     </p>
                     <div class="tech-tags">
-                        <span class="tech-tag">Kali Linux 2025.4</span>
-                        <span class="tech-tag">Metasploit</span>
-                        <span class="tech-tag">Burp Suite</span>
-                        <span class="tech-tag">Nmap</span>
+                        <span class="tech-tag">SSH Hardening</span>
+                        <span class="tech-tag">UFW</span>
+                        <span class="tech-tag">Tailscale</span>
+                        <span class="tech-tag">Docker Socket Proxy</span>
+                        <span class="tech-tag">TOTP</span>
                     </div>
                 </div>
 
                 <div class="homelab-card">
-                    <div class="card-icon">🛡️</div>
-                    <h3 class="card-title">SIEM & Monitoring</h3>
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Monitoring Stack</h3>
                     <p class="card-description">
-                        Built Ubuntu Server VM as the foundation for Wazuh SIEM deployment. Configured for log aggregation, security monitoring, and alert creation. Learning to detect attacks in real-time and practice incident response workflows.
+                        Netdata pulling 266 metrics per second, Prometheus storing the history, Grafana on top for dashboards, and Uptime Kuma watching all services with phone alerts. Also built a custom PS3-themed real-time dashboard in its own Nginx container with speedometer gauges, live network traffic charts, and a Pi-hole stats panel. Runs as a kiosk on a wall-mounted iPhone.
                     </p>
                     <div class="tech-tags">
-                        <span class="tech-tag">Ubuntu Server 22.04</span>
-                        <span class="tech-tag">Wazuh SIEM</span>
-                        <span class="tech-tag">Log Analysis</span>
+                        <span class="tech-tag">Netdata</span>
+                        <span class="tech-tag">Prometheus</span>
+                        <span class="tech-tag">Grafana</span>
+                        <span class="tech-tag">Uptime Kuma</span>
+                        <span class="tech-tag">Nginx</span>
                     </div>
                 </div>
 
                 <div class="homelab-card">
-                    <div class="card-icon">🌐</div>
-                    <h3 class="card-title">Network Architecture</h3>
+                    <div class="card-icon">🧱</div>
+                    <h3 class="card-title">Network Segmentation (In Progress)</h3>
                     <p class="card-description">
-                        Designed and implemented segmented virtual networks with NAT and bridge configurations. Set up proper routing and DNS resolution across the lab. Learning network security fundamentals and how traffic flows between isolated environments.
+                        The perimeter is solid but the interior is still flat. Once inside, there are no locked doors between services. The next sprint is isolating Docker workloads into separate subnets, tightening inter-container routing, and making sure a compromised container can't reach everything else on the bridge. Highest remaining risk on the board.
                     </p>
                     <div class="tech-tags">
-                        <span class="tech-tag">Virtual Networking</span>
-                        <span class="tech-tag">NAT/Bridging</span>
+                        <span class="tech-tag">Docker Networking</span>
                         <span class="tech-tag">Network Segmentation</span>
+                        <span class="tech-tag">UFW</span>
+                        <span class="tech-tag">nftables</span>
                     </div>
                 </div>
 
                 <div class="homelab-card">
-                    <div class="card-icon">🏢</div>
-                    <h3 class="card-title">Active Directory Lab (In Progress)</h3>
+                    <div class="card-icon">🧠</div>
+                    <h3 class="card-title">Mechanistic Interpretability Research</h3>
                     <p class="card-description">
-                        Currently deploying Windows Server 2022 as a Domain Controller with Windows 10 clients. Planning to practice Active Directory attacks like Kerberoasting and Bloodhound enumeration, while also implementing defensive techniques and monitoring everything through the SIEM.
+                        Studying how transformer models represent information internally, applied to AI security. Ran experiments in TransformerLens on GPT-2: identified induction heads across all 144 attention heads, scored each candidate, and confirmed L4H11 as a textbook induction head. Then built an agentic memory poisoning demo with a tool-calling Claude agent and a ChromaDB RAG pipeline, showing how one poisoned retrieval entry corrupts threat attribution across sessions. Followed it with attention pattern analysis on the poisoned prompt to find exactly which tokens the model weighted when it generated false attribution. Published to GitHub with inline charts.
                     </p>
                     <div class="tech-tags">
-                        <span class="tech-tag">Windows Server 2022</span>
-                        <span class="tech-tag">Active Directory</span>
-                        <span class="tech-tag">Bloodhound</span>
+                        <span class="tech-tag">TransformerLens</span>
+                        <span class="tech-tag">GPT-2</span>
+                        <span class="tech-tag">Induction Heads</span>
+                        <span class="tech-tag">Agentic Security</span>
+                        <span class="tech-tag">Memory Poisoning</span>
+                    </div>
+                </div>
+
+                <div class="homelab-card">
+                    <div class="card-icon">🍓</div>
+                    <h3 class="card-title">SeanPi — Full Build Log</h3>
+                    <p class="card-description">
+                        A full writeup of building this security stack from scratch on a Raspberry Pi 5. Pi-hole, Unbound, Tailscale, CrowdSec, Docker, Grafana, and a custom desktop HUD — documented start to finish.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Raspberry Pi 5</span>
+                        <span class="tech-tag">Pi-hole</span>
+                        <span class="tech-tag">CrowdSec</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Read Post →</span>
                     </div>
                 </div>
 
