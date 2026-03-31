@@ -573,7 +573,7 @@
                     <div class="card-icon">🔍</div>
                     <h3 class="card-title">Security Research &amp; Analysis</h3>
                     <p class="card-description">
-                        Discovered a live SEO poisoning attack on compromised .EDU infrastructure and traced the full chain: domain hijacking, HTTP referrer cloaking, and a browser privacy prompt turned into a social engineering lure. Documented it as a field report with MITRE ATT&amp;CK mapping and a full IOC list.
+                        Discovered a live SEO poisoning attack running through compromised .EDU infrastructure. Traced the full chain: hijacked domain, HTTP referrer cloaking, and a fake browser privacy prompt used as a social engineering lure. Documented the attack methodology, mapped it to MITRE ATT&amp;CK, and published a full field report with IOCs.
                     </p>
                     <div class="tech-tags">
                         <span class="tech-tag">Threat Analysis</span>
@@ -586,8 +586,8 @@
                 <div class="homelab-card">
                     <div class="card-icon">🔒</div>
                     <h3 class="card-title">Infrastructure Hardening</h3>
-                    <p class="card-description">
-                        Ran a full threat assessment on the SeanPi stack and worked through the top findings in one session. Added SSH two-factor auth with ED25519 key plus TOTP and no password fallback, locked all sensitive ports to the Tailscale interface at the UFW level, and put the Docker socket behind a filtering proxy. The docker0 bridge issue killed all Uptime Kuma monitors mid-session until I figured out what was actually happening.
+                    <p class="card-description">Ran a full threat assessment on the SeanPi stack and worked through the top findings in one session. Added SSH two-factor auth with ED25519 key plus TOTP and no password fallback. Locked all sensitive ports to the Tailscale interface at the UFW level and put the Docker socket behind a filtering proxy. Killed a live docker0 bridge bug mid-session that took down all Uptime Kuma monitors before identifying the actual cause.
+                        
                     </p>
                     <div class="tech-tags">
                         <span class="tech-tag">SSH Hardening</span>
@@ -602,7 +602,7 @@
                     <div class="card-icon">📊</div>
                     <h3 class="card-title">Monitoring Stack</h3>
                     <p class="card-description">
-                        Netdata pulling 266 metrics per second, Prometheus storing the history, Grafana on top for dashboards, and Uptime Kuma watching all services with phone alerts. Also built a custom PS3-themed real-time dashboard in its own Nginx container with speedometer gauges, live network traffic charts, and a Pi-hole stats panel. Runs as a kiosk on a wall-mounted iPhone.
+                        Netdata pulling 266 metrics per second, Prometheus storing the history, Grafana on top for dashboards, and Uptime Kuma watching all services with phone alerts. Also built a custom PS3-themed real-time dashboard in its own Nginx container with speedometer gauges and live network traffic charts. Runs as a kiosk on a wall-mounted iPhone.
                     </p>
                     <div class="tech-tags">
                         <span class="tech-tag">Netdata</span>
@@ -617,7 +617,7 @@
                     <div class="card-icon">🧱</div>
                     <h3 class="card-title">Network Segmentation (In Progress)</h3>
                     <p class="card-description">
-                        The perimeter is solid but the interior is still flat. Once inside, there are no locked doors between services. The next sprint is isolating Docker workloads into separate subnets, tightening inter-container routing, and making sure a compromised container can't reach everything else on the bridge. Highest remaining risk on the board.
+                        The perimeter is solid but the interior is still flat. Once inside, there are no locked doors between services. Next sprint is isolating Docker workloads into separate subnets and tightening inter-container routing so a compromised container can't move laterally. Highest remaining risk on the board.
                     </p>
                     <div class="tech-tags">
                         <span class="tech-tag">Docker Networking</span>
@@ -631,7 +631,7 @@
                     <div class="card-icon">🧠</div>
                     <h3 class="card-title">Mechanistic Interpretability Research</h3>
                     <p class="card-description">
-                        Studying how transformer models represent information internally, applied to AI security. Ran experiments in TransformerLens on GPT-2: identified induction heads across all 144 attention heads, scored each candidate, and confirmed L4H11 as a textbook induction head. Then built an agentic memory poisoning demo with a tool-calling Claude agent and a ChromaDB RAG pipeline, showing how one poisoned retrieval entry corrupts threat attribution across sessions. Followed it with attention pattern analysis on the poisoned prompt to find exactly which tokens the model weighted when it generated false attribution. Published to GitHub with inline charts.
+                        Studying how transformer models represent information internally, applied to AI security. Ran experiments in TransformerLens on GPT-2, identified induction heads across all 144 attention heads, and confirmed L4H11 as a textbook example. Then built an agentic memory poisoning demo with a tool-calling Claude agent and a ChromaDB RAG pipeline, showing how one poisoned retrieval entry corrupts threat attribution across sessions. Published to GitHub with inline attention pattern charts.
                     </p>
                     <div class="tech-tags">
                         <span class="tech-tag">TransformerLens</span>
@@ -648,7 +648,7 @@
                     <div class="card-icon">🥧</div>
                     <h3 class="card-title">SeanPi — Full Build Log</h3>
                     <p class="card-description">
-                        A full writeup of building this security stack from scratch on a Raspberry Pi 5. Pi-hole, Unbound, Tailscale, CrowdSec, Docker, Grafana, and a custom desktop HUD — documented start to finish.
+                        A full documented build of this security stack from scratch on a Raspberry Pi 5. Pi-hole with Unbound for recursive DNS, Tailscale exit node, CrowdSec blocking 15,000+ community-sourced threat IPs, and the full Docker service stack. Covers every blocker hit along the way, not just the happy path.
                     </p>
                     <div class="tech-tags">
                         <span class="tech-tag">Raspberry Pi 5</span>
