@@ -721,13 +721,10 @@
 function toggleSection(sectionId) {
     const content = document.getElementById(sectionId + '-content');
     const arrow = document.getElementById(sectionId + '-arrow');
-    
     if (content.style.maxHeight && content.style.maxHeight !== '0px') {
-        // Close the section
         content.style.maxHeight = '0px';
         arrow.style.transform = 'rotate(0deg)';
     } else {
-        // Open the section
         content.style.maxHeight = content.scrollHeight + 'px';
         arrow.style.transform = 'rotate(180deg)';
     }
@@ -735,29 +732,11 @@ function toggleSection(sectionId) {
 
 // Animated Terminal Logo
 const commands = [
-    'whoami',
-    'ls -la',
-    'cat /etc/passwd',
-    'sudo su',
-    'pwd',
-    'ps aux',
-    'netstat -an',
-    'ifconfig',
-    'chmod 777',
-    'grep -r',
-    'find /',
-    'top',
-    'htop',
-    'vim ~/.bashrc',
-    'git status',
-    'docker ps',
-    'kubectl get pods',
-    'nmap -sV',
-    './exploit.sh',
-    'ssh root@',
-    'tail -f /var/log',
-    'iptables -L',
-    'systemctl status'
+    'whoami', 'ls -la', 'cat /etc/passwd', 'sudo su', 'pwd', 'ps aux',
+    'netstat -an', 'ifconfig', 'chmod 777', 'grep -r', 'find /', 'top',
+    'htop', 'vim ~/.bashrc', 'git status', 'docker ps', 'kubectl get pods',
+    'nmap -sV', './exploit.sh', 'ssh root@', 'tail -f /var/log',
+    'iptables -L', 'systemctl status'
 ];
 
 let currentCommandIndex = 0;
@@ -768,9 +747,7 @@ let typingSpeed = 100;
 function typeCommand() {
     const logoText = document.getElementById('logo-text');
     if (!logoText) return;
-
     const currentCommand = commands[currentCommandIndex];
-
     if (isDeleting) {
         logoText.textContent = currentCommand.substring(0, currentCharIndex - 1);
         currentCharIndex--;
@@ -780,7 +757,6 @@ function typeCommand() {
         currentCharIndex++;
         typingSpeed = 100;
     }
-
     if (!isDeleting && currentCharIndex === currentCommand.length) {
         typingSpeed = 2000;
         isDeleting = true;
@@ -789,24 +765,70 @@ function typeCommand() {
         currentCommandIndex = (currentCommandIndex + 1) % commands.length;
         typingSpeed = 500;
     }
-
     setTimeout(typeCommand, typingSpeed);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-// Obfuscated email using ASCII character codes
-    const codes = [115,101,97,110,64,109,97,103,101,101,46,112,114,111];
-    const emailDisplay = document.getElementById('email-display');
-    if (emailDisplay) {
-        emailDisplay.textContent = String.fromCharCode(...codes);
+// Auto-update Latest Report banner from GitHub
+function parseReportDate(filename) {
+    const name = filename.replace(/\.md$/i, '');
+    const match = name.match(/-([a-z]+)(\d{1,2})-(\d{4})$/i);
+    if (!match) return null;
+    const months = {jan:0,feb:1,mar:2,march:2,apr:3,april:3,may:4,jun:5,june:5,jul:6,july:6,aug:7,sep:8,sept:8,oct:9,nov:10,dec:11};
+    const monthNum = months[match[1].toLowerCase()];
+    if (monthNum === undefined) return null;
+    return new Date(parseInt(match[3]), monthNum, parseInt(match[2]));
+}
+
+function parseReportTitle(filename) {
+    const name = filename.replace(/\.md$/i, '').replace(/-([a-z]+\d{1,2}-\d{4})$/i, '');
+    return name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+async function updateReportBanner() {
+    const link = document.getElementById('latest-report-link');
+    const titleEl = document.getElementById('latest-report-title');
+    const dateEl = document.getElementById('latest-report-date');
+    if (!link || !titleEl || !dateEl) return;
+
+    try {
+        const res = await fetch('https://api.github.com/repos/BR4Dgg/portfolio/contents/reports');
+        if (!res.ok) throw new Error('API error');
+        const files = await res.json();
+        const reports = files.filter(f => f.name.endsWith('.md'));
+        if (!reports.length) throw new Error('No reports');
+
+        reports.sort((a, b) => {
+            const da = parseReportDate(a.name);
+            const db = parseReportDate(b.name);
+            if (da && db) return db - da;
+            if (da) return -1;
+            if (db) return 1;
+            return b.name.localeCompare(a.name);
+        });
+
+        const latest = reports[0];
+        const date = parseReportDate(latest.name);
+        const displayDate = date ? date.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) : null;
+
+        titleEl.textContent = parseReportTitle(latest.name);
+        dateEl.textContent = displayDate ? 'Latest Security Research \u2022 ' + displayDate : 'Latest Security Research';
+        link.href = 'https://github.com/BR4Dgg/portfolio/blob/main/reports/' + latest.name;
+
+    } catch (err) {
+        console.warn('Could not fetch latest report:', err);
+        titleEl.textContent = 'Agentic Memory Poisoning \u2014 RAG Pipeline Attack & Mechanistic Interpretability';
+        dateEl.textContent = 'Latest Security Research \u2022 Mar 31, 2026';
+        link.href = 'https://github.com/BR4Dgg/portfolio/blob/main/reports/agentic-memory-poisoning-march31-2026.md';
     }
-    typeCommand();
-    
-    const reportLink = document.getElementById('latest-report-link');
-    if (reportLink) {
-        reportLink.href = 'https://github.com/BR4Dgg/portfolio/blob/main/reports/seanpi-homelab-build.md';
-    }
-});
+}
+
+// Email obfuscation + init
+const codes = [115,101,97,110,64,109,97,103,101,101,46,112,114,111];
+const emailDisplay = document.getElementById('email-display');
+if (emailDisplay) emailDisplay.textContent = String.fromCharCode(...codes);
+
+typeCommand();
+updateReportBanner();
     </script>
 </body>
 </html>
