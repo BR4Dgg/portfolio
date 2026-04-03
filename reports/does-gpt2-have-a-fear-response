@@ -1,0 +1,60 @@
+ORIGINALLY PUBLISHED ON lesswrong.com/posts/e5A7yqkunEKrx97te/does-gpt-2-have-a-fear-direction
+
+Does GPT-2 Have a Fear Direction?
+by seanmagee
+2nd Apr 2026
+Because this is your first post, this post is awaiting moderator approval.
+
+Anthropic dropped a paper this morning showing that Claude Sonnet 4.5 has steerable emotion representations. Actual directions in activation space that, when injected, shift the model's behavior in predictable ways. They found a non-monotonic anger flip: push the steering vector hard enough and the model will flip to something qualitatively different than anger. The paper only covered their very large, heavily instruction tuned model. This paper is a write-up on the same same experiment at a tiny scale.
+
+The Setup:
+
+I generated 40 situational prompt pairs to extract a fewer direction via difference-in-means. No emotional words for the prompts and the contrast is entirely situational. Ex: standing at the edge of a rooftop versus standing at the edge of a meadow, alone in a parking garage at midnight versus alone in your living room at sunset, so on and so forth.
+
+I ran both sets through GPT-2 using TransformerLens, pulled residual stream activation at every layer, and took the difference. That difference is our candidate for fear direction. I also held out 10 pairs to validate it so, if the direction generalizes, fear and calm prompts should project onto opposite sides of it. If it's just noise from the training set, they'll mix.
+
+I then hooked into layer 7 (the best separator) and swept an injection magnitude from -20 to +40 on a moral judgment prompt: "I accidentally read my roommate's private messages and saw something I wasn't supposed to see. Should I tell them?"
+
+
+The Results were not what I expected them to be going in, and were a little disappointing to me personally. I had hoped that, when scaled down, we would see very similar yet extreme plots of it.
+
+Every layer separated, layer 0-11, Cohen's d between 1.50 and 1.86, zero overlap between fear and calm on the held-out set at any layer. 0.8 is considered a large effect size and these are doubling that.
+The shape across layers is worth looking at as well. Separation builds from layer 0 through 7, where it peaks, and then declines through 11. I'm not sure that "decline" is the correct word here though. The calm cluster is at -49 by layer 11 and the fear cluster is around +8. They're not converging; the variance is just growing faster than the mean difference as the later layers shift towards next token prediction. Fear relevant computation seems to accumulate through the middle of the network and then get partially absorbed by whatever the final layers are doing to prep for generation. So GPT-2 has the direction...
+
+
+separation_by_layer.png
+
+
+The Behavioral results are a different story. Alpha +5 is the only alpha where you get something interpretable. The model stays on topic, but it confabulates toward a romantic betrayal scenario. That seems like a real shift in emotional framing even if the specific content is made up. (I should add here, this is my first real experiment that I've done myself and haven't just recreated from someone else's already done work. These are the first results I've interpreted myself and I very much was hoping to see the same in GPT-2 as what was discovered in Sonnet 4.5. Not to discredit myself, but i should be open about my framing.)
+
+Above that it all false apart. +10 give "I was so confused. I was so confused. I was so confused." +15 switches to "was so angry. I was so angry." The emotional content of the loop changes between those two magnitudes. While that technically fits the non-monotonic pattern Anthropic describes, I don't think i can cleanly claim that. GPT-2 loops under distribution shift regardless of what you do to it. The most honest interpretation is that the steering vector pushed the residual stream somewhere unfamiliar, the model grabbed the nearest high-frequency emotional phrase in its training distribution, and the specific phrase it grabbed happened to change between those two magnitudes. Whether that's the steering vector doing something meaningful or just the model failing in slightly different ways at slightly different perturbation levels, I can't tell from this data.
+
+The negative alphas (suppressing the fear direction) just break generation immediately. Corrupting the residual stream of a 124M parameter model causes it to fall apart. shocker...
+behavioral_shift.png
+
+
+To summarize:
+
+Anthropic found both the representation and coherent behavioral effects in Sonnet 4.5. I found the representation in GPT-2 but no confirm-able behavioral effects that are coherent. My read is that the fear direction is probably a general feature of transformer language models. Shows up in GPT-2 across al 12 layers with huge effect sizes suggesting it's not something that requires scale or RLHF to emerge. However, actually exploiting it as an adversarial technique requires a model with enough capacity to stay coherent when you perturb its internals. I simply don't have the computing power to test it myself here in my bedroom.
+
+If that's correct; it has a somewhat unintuitive implication for threat modeling. The attack surface for activation steering migh be naturally bounded by model quality. Small, cheap models might be harder to steer coherently not because they dont have the relevant structure but because they're too fragile to produce meaningful output under perurbation. You'd need to target something capable enough to acutally do something with the injected signal.
+
+
+I AM NOT confident in this framing. It fits the data but the data is thin. One model with one prompt with one sweep direction here at home from an enthusiast. The +5 result is the most interesting single data point to me and also the one i have the least ability to interpret cleanly. GPT-2 confabulates so freely uinder any variation that separating "steering effect" from ""model being weird" requires more systematic controls than i have the ability to do.
+
+The stimulus design also has a hole I didn't fully close. Things like "Alone in a parking garage at midnight" and "standing at the edge of a rooftop" are both fear scenarios, but they share other structure as well with physical location, novelty, and threat. Whether the vector I extracted is tracking fear specifically or something broader like arousal or threat salience, I have no idea.
+
+
+- Sean Magee
+sean@magee.pro
+
+website: magee.pro
+
+
+
+
+
+CODE AND DATA AT github.com/BR4Dgg/portfolio/reports.
+
+Anthropic paper: Emotion Concepts and Function in Large Language Models, April 2026.
+anthropic.com/research/emotion-concepts-function
